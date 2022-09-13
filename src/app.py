@@ -41,11 +41,6 @@ else:
 with open("./data/stzh.adm_stadtkreise_a.json") as json_file:
     locs_zh = json.load(json_file)
 
-# count_alter = Counter()
-# for item in df_mp["ALTER"]:
-#     count_alter[item] += 1
-# print(count_alter)
-
 
 dogs_per_kreis = dog_df.groupby("STADTKREIS").size().reset_index(name='COUNT')
 dogs_per_kreis.head()
@@ -66,7 +61,7 @@ fig = px.choropleth_mapbox(
     title="<b>Number of Dogs per District - Zurich</b>",
     color_continuous_scale="Purples",
 )
-fig.update_layout(margin={"r":0,"t":35,"l":0,"b":0},
+fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0},
                   font_color="black",
                   hoverlabel={"bgcolor":"grey",
                               "font_size":12},
