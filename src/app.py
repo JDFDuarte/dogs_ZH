@@ -51,29 +51,26 @@ dogs_per_kreis = dog_df.groupby("STADTKREIS").size().reset_index(name='COUNT')
 dogs_per_kreis.head()
 
 
-# fig = px.choropleth_mapbox(
-#     dogs_per_kreis,
-#     color="COUNT",
-#     geojson=locs_zh,
-#     locations="STADTKREIS",
-#     featureidkey="properties.name",
-#     center={"lat": 47.38, "lon": 8.54},
-#     zoom = 10,
-#     mapbox_style="open-street-map",
-#     opacity=0.6,
-#     labels={"STADTKREIS":"District",
-#            "COUNT":"Nr Dogs"},
-#     title="<b>Number of Dogs per District - Zurich</b>",
-#     color_continuous_scale="Purples",
-# )
-# fig.update_layout(margin={"r":0,"t":35,"l":0,"b":0},
-#                   font_color="black",
-#                   hoverlabel={"bgcolor":"grey",
-#                               "font_size":12},
-#                   title={"font_size":20}
-#                  )
-# fig.show()
+fig = px.choropleth_mapbox(
+    dogs_per_kreis,
+    color="COUNT",
+    geojson=locs_zh,
+    locations="STADTKREIS",
+    featureidkey="properties.name",
+    center={"lat": 47.38, "lon": 8.54},
+    zoom = 10,
+    mapbox_style="open-street-map",
+    opacity=0.6,
+    labels={"STADTKREIS":"District",
+           "COUNT":"Nr Dogs"},
+    title="<b>Number of Dogs per District - Zurich</b>",
+    color_continuous_scale="Purples",
+)
+fig.update_layout(margin={"r":0,"t":35,"l":0,"b":0},
+                  font_color="black",
+                  hoverlabel={"bgcolor":"grey",
+                              "font_size":12},
+                  title={"font_size":20}
+                 )
+fig.show()
 
-st.subheader("Streamlit Map")
-ds_geo = dogs_per_kreis
-st.map(ds_geo)
