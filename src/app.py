@@ -67,5 +67,7 @@ fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0},
                               "font_size":12},
                   title={"font_size":20}
                  )
-fig.show()
+
+st.plotly_chart(fig, use_container_width=True)
+
 
