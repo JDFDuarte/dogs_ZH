@@ -38,7 +38,7 @@ else:
 
 # ____________________________________
 
-with open('stzh.adm_stadtkreise_a.json') as json_file:
+with open("./data/stzh.adm_stadtkreise_a.json") as json_file:
     locs_zh = json.load(json_file)
 
 # count_alter = Counter()
