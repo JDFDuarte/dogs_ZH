@@ -53,6 +53,7 @@ fig = px.choropleth_mapbox(
     locations="STADTKREIS",
     featureidkey="properties.name",
     center={"lat": 47.38, "lon": 8.54},
+    zoom=13,
     mapbox_style="open-street-map",
     opacity=0.6,
     labels={"STADTKREIS":"District",
