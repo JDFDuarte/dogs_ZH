@@ -51,27 +51,36 @@ dogs_per_kreis = dog_df.groupby("STADTKREIS").size().reset_index(name='COUNT')
 dogs_per_kreis.head()
 
 
-fig = px.choropleth_mapbox(
-    dogs_per_kreis,
-    color="COUNT",
-    geojson=locs_zh,
-    locations="STADTKREIS",
-    featureidkey="properties.name",
-    center={"lat": 47.38, "lon": 8.54},
-    zoom = 10,
-    mapbox_style="open-street-map",
-    opacity=0.6,
-    labels={"STADTKREIS":"District",
-           "COUNT":"Nr Dogs"},
-    title="<b>Number of Dogs per District - Zurich</b>",
-    color_continuous_scale="Purples",
-)
-fig.update_layout(margin={"r":0,"t":35,"l":0,"b":0},
-                  font_color="black",
-                  hoverlabel={"bgcolor":"grey",
-                              "font_size":12},
-                  title={"font_size":20,
-                         "xanchor":"center", "x":0.38,
-                        "yanchor":"bottom", "y":0.96}
-                 )
-fig.show()
+plotly_map = go.Figure(go.Choroplethmapbox(geojson=locs_zh, locations="STADTKREIS",
+                                    colorscale="Viridis",
+                                    marker_opacity=0.5, marker_line_width=0))
+plotly_map.update_layout(mapbox_style="carto-positron",
+                  mapbox_zoom=3, mapbox_center={"lat": 37.0902, "lon": -95.7129},
+                  margin={"r": 0, "t": 0, "l": 0, "b": 0})
+
+st.plotly_chart(plotly_map)
+
+# fig = px.choropleth_mapbox(
+#     dogs_per_kreis,
+#     color="COUNT",
+#     geojson=locs_zh,
+#     locations="STADTKREIS",
+#     featureidkey="properties.name",
+#     center={"lat": 47.38, "lon": 8.54},
+#     zoom = 10,
+#     mapbox_style="open-street-map",
+#     opacity=0.6,
+#     labels={"STADTKREIS":"District",
+#            "COUNT":"Nr Dogs"},
+#     title="<b>Number of Dogs per District - Zurich</b>",
+#     color_continuous_scale="Purples",
+# )
+# fig.update_layout(margin={"r":0,"t":35,"l":0,"b":0},
+#                   font_color="black",
+#                   hoverlabel={"bgcolor":"grey",
+#                               "font_size":12},
+#                   title={"font_size":20,
+#                          "xanchor":"center", "x":0.38,
+#                         "yanchor":"bottom", "y":0.96}
+#                  )
+# fig.show()
